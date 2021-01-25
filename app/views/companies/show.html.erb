@@ -6,14 +6,14 @@
     </div>
     <div class="col text-right">
       <%= link_to "Edit", edit_company_path %>
+      
     </div>
   </div>
-  <div class="bg-success">
+  <div style="background-color: <%=@company.try(:brand_color) %>">
     <div class="container p-5 text-white">
       <h1><%= @company.name %></h1>
-      <h3><mark>City, State</mark></h3>
-      <pre><mark>☝️ This is what needs to be udpated. Examples: Atlanta, GA or Nashvile, TN</mark></pre>
-    </div>
+      <h3><p><%= @company.city%>, <%= @company.state%></p></h3>
+      </div>
   </div>
 
   <div class="row bg-light">
@@ -33,8 +33,15 @@
           <a data-target="clipboard.notice" class="clipboard-button pointer d-none text-decoration-none text-dark" class="d-none"> copied</a> 
           </p>         
         </div>
+        <h4>Brand Color</h4>
+        <div class="form-group" data-controller="clipboard">
+          <input type="label" style="background-color: <%=@company.try(:brand_color) %>;width:150px;height:40px;">
+      </tr>         
+        </div>
     </div>
   </div>
+
+
 
   <div class="bg-success text-white text-center py-3">
     <p class="lead"><%= @company.phone %> — <%= @company.email %></p>

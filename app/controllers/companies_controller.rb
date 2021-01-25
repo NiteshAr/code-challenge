@@ -24,6 +24,11 @@ class CompaniesController < ApplicationController
   def edit
   end
 
+  def destroy
+    @company.delete
+    redirect_to companies_path, notice: "Deleted"
+  end
+
   def update
     if @company.update(company_params)
       redirect_to companies_path, notice: "Changes Saved"
@@ -43,7 +48,9 @@ class CompaniesController < ApplicationController
       :phone,
       :email,
       :owner_id,
+      :brand_color,
       services: []
+
     )
   end
 

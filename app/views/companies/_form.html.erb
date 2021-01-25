@@ -1,6 +1,20 @@
 <div class="py-5">
   <%= form_for @company do |f| %>
 
+  <% if @company.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@company.errors.count, "error") %> prohibited
+        this company from being saved:
+      </h2>
+      <ul>
+        <% @company.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
     <div class="row my-lg-3">
       <div class="col-lg-3">
         <label><strong>Name</strong><br><small class="text-muted">The public DBA, or Common name of the organization</small></label>
@@ -57,17 +71,23 @@
         </div>
       </div>
     </div>
-
     <div class="row my-lg-3">
       <div class="col-lg-3">
         <label><strong>Services</strong><br><small class="text-muted">List the services offered by this company</small></label>
       </div>
+    </div>
+
+    <div class="row my-lg-3">
+      <div class="col-lg-3">
+        <label><strong>Brand Color</strong></label>
+      </div>
       <div class="col-lg offset-lg-1">
-          <div data-controller="services" class="form-group">
-            <%= f.select :services, options_for_select(["Interior Painting", "Commercial Painting", "Exterior Painting"], @company.services), {include_blank: true, required: false}, multiple: true, "data-target": "services.select2", class: "form-control" %>
-          </div>
+        <div class="form-group", style="width: 165px;">
+          <%= f.color_field :brand_color, class: "form-control", placeholder: "#e66465"%>
+        </div>
       </div>
     </div>
+
 
     <div class="row my-lg-3">
       <div class="col">
